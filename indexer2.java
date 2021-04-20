@@ -35,17 +35,17 @@ public class indexer2 {
 			Node node = nodeList.item(i);
 			set = (node.getLastChild().getTextContent().split(" "));
 			for(String wordset : set) {
-				String[] word = wordset.split(":");
+				String[] word = wordset.split(" ");
 				for(int k = 0; k<word.length; k+=2) {
-					arrayList.add(word[k] + ";" + i + ";" + word[k+1]);
+					arrayList.add(word[k] + " " + i + " " + word[k+1]);
 				}
 			}
 		}
 		for(String item : arrayList) {
-			String[] s = item.split(";");
+			String[] s = item.split(" ");
 			if(hashMap.containsKey(s[0])) {
 				String origin = hashMap.get(s[0]).toString();
-				String new_value = origin + ";" + s[1] + " " + s[2];
+				String new_value = origin + " " + s[1] + " " + s[2];
 				hashMap.put(s[0], new_value);
 			}
 			else {
@@ -58,7 +58,7 @@ public class indexer2 {
 			String value = hashMap.get(key);
 			System.out.println(key + ":"+value);
 			
-			String[] valueSet = value.split(";");
+			String[] valueSet = value.split(" ");
 			
 			for (String s: valueSet) {
 				double id = Double.parseDouble(s.substring(0,1));
